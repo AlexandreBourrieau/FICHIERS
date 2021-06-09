@@ -1,0 +1,12 @@
+Modèles Seq2Seq Basique:
+========================
+
+Seq2Seq_Basique_GRU128_DR04_L2_003_BS128_EP1000 :
+	- Encodeur unidirectionnel GRU #128
+	- Longueur entrée : 4 jours
+	- Longueur sortie : 1 jour
+	- Drop : 0.4
+	- L2 : 0.03
+	- Batch Size : 128
+	- Périodes : 1000
+	=> mse : 0.0133 / 0.0159
