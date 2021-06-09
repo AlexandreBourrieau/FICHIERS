@@ -1,5 +1,5 @@
-Modèles Seq2Seq Basique:
-========================
+Modèles Seq2Seq Basiques:
+=========================
 
 Seq2Seq_Basique_GRU128_DR04_L2_003_BS128_EP1000 :
 	- Encodeur unidirectionnel GRU #128
