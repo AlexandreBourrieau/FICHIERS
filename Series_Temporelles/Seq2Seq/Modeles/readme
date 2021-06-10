@@ -20,3 +20,13 @@ Seq2Seq_Basique_GRU128_DR00_L2_000_BS128_EP1000 :
 	- Batch Size : 128
 	- Périodes : 1000
 	=> mse :  0.2195 / 0.2320 
+
+Seq2Seq_Basique_GRU128_DR01_L2_001_BS128_EP1000_5J_12H :
+	- Encodeur unidirectionnel GRU #128
+	- Longueur entrée : 5 jours
+	- Longueur sortie : 12h
+	- Drop : 0.2
+	- L2 : 0.01
+	- Batch Size : 128
+	- Périodes : 1000
+	=> mse :  0.0227 / 0.0289
