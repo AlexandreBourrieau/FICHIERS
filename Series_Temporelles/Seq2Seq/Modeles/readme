@@ -29,4 +29,4 @@ Seq2Seq_Multi_LSTMBiDir128_DR01_L2_001_BS128_EP1000_5J_12H :
 	- L2 : 0.01
 	- Batch Size : 128
 	- Périodes : 1000
-	=> mse :  
+	=> mse :  0.0054 / 0.0147
