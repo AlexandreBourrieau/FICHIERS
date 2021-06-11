@@ -9,7 +9,7 @@ Seq2Seq_Basique_GRU128_DR01_L2_001_BS128_EP1000_5J_12H :
 	- L2 : 0.01
 	- Batch Size : 128
 	- Périodes : 1000
-	=> mse :  0.0227 / 0.0289
+	=> mse :  0.0212 / 0.0260
 
 Seq2Seq_Basique_LSTMBiDir128_DR01_L2_001_BS128_EP1000_5J_12H :
 	- Encodeur Bidirectionnel LSTM #128
