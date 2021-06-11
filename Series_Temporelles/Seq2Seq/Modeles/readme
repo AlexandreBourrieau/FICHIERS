@@ -1,7 +1,7 @@
 Modèles Seq2Seq Basiques:
 =========================
 
-Seq2Seq_Basique_GRU128_DR01_L2_001_BS128_EP1000_5J_12H :
+Seq2Seq_Basique_GRU128_DR02_L2_001_BS128_EP1000_5J_12H :
 	- Encodeur unidirectionnel GRU #128
 	- Longueur entrée : 5 jours
 	- Longueur sortie : 12h
