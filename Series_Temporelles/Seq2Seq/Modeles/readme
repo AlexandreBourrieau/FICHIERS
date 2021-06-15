@@ -31,6 +31,15 @@ Seq2Seq_Basique_LSTMBiDir128_DR02_L2_001_BS128_EP1000_5J_12H  :
 	- Périodes : 1000
 	=> mse :  0.0078 / 0.0138
 
+Seq2Seq_Basique_LSTMBiDir128_DR04_L2_002_BS128_EP1000_5J_12H  :
+	- Encodeur Bidirectionnel LSTM #128
+	- Longueur entrée : 5 jours
+	- Longueur sortie : 12h
+	- Drop : 0.4
+	- L2 : 0.002
+	- Batch Size : 128
+	- Périodes : 1000
+	=> mse :  0.0072 / 0.0128
 
 Modèles avec Attention Bahdanau:
 ================================
