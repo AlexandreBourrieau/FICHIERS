@@ -53,4 +53,4 @@ Seq2Seq_Bahdanau_LSTMBiDir128_DR01_L2_001_BS128_EP1000_5J_12H :
 	- L2 : 0.01
 	- Batch Size : 128
 	- Périodes : 1000
-	=> mse :  0.0075 / 0.0138
+	=> mse :  0.0072 / 0.0131
