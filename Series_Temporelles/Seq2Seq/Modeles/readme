@@ -63,3 +63,15 @@ Seq2Seq_Bahdanau_LSTMBiDir128_DR03_L2_005_BS128_EP1000_5J_12H :
 	- Batch Size : 128
 	- Périodes : 1000
 	=> mse :  0.0229/0.0296
+
+Seq2Seq_Bahdanau_LSTMBiDir128_DR04_L2_01_BS256_EP500_DLR_001_5J_12H_SS50 :
+	- Encodeur Bi-directionnel LSTM #128
+	- Longueur entrée : 5 jours
+	- Longueur sortie : 24h
+	- Drop : 0.4
+	- L2 : 0.01
+	- Batch Size : 256
+	- Périodes : 500  
+	- Décroissance LR : 0.01  
+	- Schedule Sampling : k = max_periodes/50  
+	=> mse : 0.0074 / 0.0132
