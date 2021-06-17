@@ -86,3 +86,18 @@ Seq2Seq_Bahdanau_LSTMBiDir128_DR04_L2_01_BS256_EP500_DLR_001_5J_12H_SS50 :
 	- Décroissance LR : 0.01  
 	- Schedule Sampling : k = max_periodes/50  
 	=> mse : 0.0074 / 0.0132
+
+Modèles avec Attention Luong:
+================================
+
+Seq2Seq_Luong_GRU128_DR04_L2_01_BS512_EP1000_DLR_001_5J_12H_SS10 :
+	- Encodeur GRU unidirectionnel #128
+	- Longueur entrée : 5 jours
+	- Longueur sortie : 12h
+	- Drop : 0.4
+	- L2 : 0.01
+	- Batch Size : 512
+	- Périodes : 1000  
+	- Décroissance LR : 0.01  
+	- Schedule Sampling : k = max_periodes/10  
+	=> mse : 0.0105 / 0.0170
