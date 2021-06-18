@@ -100,4 +100,4 @@ Seq2Seq_Luong_GRU128_DR04_L2_01_BS512_EP1000_DLR_001_5J_12H_SS10 :
 	- Périodes : 1000  
 	- Décroissance LR : 0.01  
 	- Schedule Sampling : k = max_periodes/10  
-	=> mse : 0.0105 / 0.0170
+	=> mse : 0.0106 / 0.0183
