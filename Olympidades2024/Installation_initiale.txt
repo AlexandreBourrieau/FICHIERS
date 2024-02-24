@@ -1,0 +1,211 @@
+Mise à jour:
+============
+sudo apt update
+sudo apt upgrade
+sudo reboot
+
+Installation Visual Studio Code:
+================================
+wget https://az764295.vo.msecnd.net/stable/7f329fe6c66b0f86ae1574c2911b681ad5a45d63/code_1.77.0-1680084405_arm64.deb
+sudo dpkg -i code_1.77.0-1680084405_arm64.deb
+=> Lancer Visual studio avec le GUI et installer les packages (python & c++)
+
+
+Mise à jour de Python:
+======================
+sudo apt install python3-pip
+sudo -H pip3 install --upgrade pip
+
+Installation de Jupyter Notebook:
+=================================
+	Installation de nvm : 		wget https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
+					sudo chmod +x install.sh
+					./install.sh
+					source .bashrc
+	Installation de node:		nvm install node
+					nvm use node
+
+	Installation de pyzmq:		sudo -H pip3 install pyzmq
+	Installation de jupyter:	sudo -H pip3 install jupyter jupyterlab
+
+Installation des Traitlets:
+===========================
+sudo python3 -m pip install git+https://github.com/ipython/traitlets@dead2b8cdde5913572254cf6dc70b5a6065b86f8
+
+Installation des Jupyter clickable image widget:
+================================================
+sudo apt-get install nodejs-dev node-gyp libssl1.0-dev
+sudo apt-get install npm
+
+Mise à jour de nodejs:
+======================
+wget https://deb.nodesource.com/setup_16.x
+chmod +x setup_16.x
+sudo ./setup_16.x
+sudo apt-get install -y nodejs
+
+Installation des extensions Jupyter:
+====================================
+sudo jupyter labextension install @jupyter-widgets/jupyterlab-manager
+git clone https://github.com/jaybdub/jupyter_clickable_image_widgetcd jupyter_clickable_image_widget
+cd jupyter_clickable_image_widget
+sudo -H pip3 install -e .
+sudo jupyter labextension install js
+cd ..
+
+Horloges du jetson au max:
+==========================
+sudo -H pip3 install jetson-stats
+sudo /usr/sbin/nvpmodel -m 0
+sudo jetson_clocks
+				
+Installation des outils spécifiques:
+====================================
+sudo -H pip3 install matplotlib
+sudo apt-get install nano
+sudo -H pip3 install pyserial
+
+Mise en place du service Jupyterlab:
+====================================
+	sudo nano /etc/systemd/system/jupyter.service
+			[Unit]
+			After=netword.service
+			[Service]
+			User=alexandre
+			WorkingDirectory=/home/alexandre
+			ExecStart=/usr/local/bin/jupyter-lab --ip 127.0.0.1 --port 8888
+			[Install]
+			WantedBy=default.target
+	sudo systemctl enable jupyter.service
+	sudo systemctl start jupyter.service
+	sudo systemctl stop jupyter.service
+
+Installation de bokeh:
+======================
+sudo -H pip3 install jupyter_bokeh
+
+
+Création d'un fichier de configuration de jupyter:
+==================================================
+	jupyter-lab --generate-config
+	sudo nano /home/jetson/.jupyter/jupyter_lab_config.py
+		=> ## Ajouter la ligne ci-dessous pour autoriser la connexion root
+		c.NotebookApp.allow_root = True
+	
+	sudo jupyter-lab password
+		=>définir le password (jetson)
+
+	sudo chown -R jetson:jetson ~/.local/share/
+	sudo chown -R jetson:jetson .jupyter/jupyter_server_config.json
+	sudo systemctl daemon-reload
+	sudo systemctl restart jupyter.service
+
+=> Lancer jupyerlab : IP:8888
+=> Aller dans les extension et les ativer (enable)
+
+Installation de la librairie JetsonGPIO:
+========================================
+sudo -H pip3 install jetson-gpio
+sudo groupadd -f -r gpio
+sudo usermod -a -G gpio jetson
+
+
+Gestion espace mémoire:
+=======================
+sudo systemctl disable nvzramconfig.service
+sudo fallocate -l 6G /mnt/6GB.swap
+sudo chmod 600 /mnt/6GB.swap
+sudo mkswap /mnt/6GB.swap
+sudo nano /etc/fstab
+ => Ajouter : /mnt/6GB.swap        swap                  swap           defaults                                     0 1
+sudo reboot
+
+Installation de la dernière version de OpenCV:
+==============================================
+sudo pip3 install opencv-python
+
+
+Installation de Tensorflow:
+===========================
+	Dépendences:
+	------------
+	sudo apt-get update
+	sudo apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran
+	sudo -H pip3 install -U pip testresources setuptools==49.6.0
+	sudo -H pip3 install -U --no-deps numpy==1.19.4 future==0.18.2 mock==3.0.5 keras_preprocessing==1.1.2 keras_applications==1.0.8 gast==0.4.0 protobuf pybind11 cython pkgconfig packaging
+	sudo env H5PY_SETUP_REQUIRES=0 pip3 install -U h5py==3.1.0
+
+	Tensorflow:
+	-----------
+	sudo -H pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v46 tensorflow
+
+Installation de Pytorch:
+========================
+	wget -N https://nvidia.box.com/shared/static/yr6sjswn25z7oankw8zy1roow9cy5ur1.whl -O torch-1.6.0rc2-cp36-cp36m-linux_aarch64.whl
+	sudo apt-get install -y libopenblas-base libopenmpi-dev 
+	sudo -H pip3 install Cython
+	sudo -H pip3 install torch-1.6.0rc2-cp36-cp36m-linux_aarch64.whl 
+
+Installation de pyCuda:
+=======================
+
+	# Add CUDA to PATH/LD_LIBRARY_PATH/CPATH environment variables (add in ~./bashrc)
+	export PATH="/usr/local/cuda/bin:${PATH}"
+	export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
+	export CPATH=$CPATH:/usr/local/cuda-10.2/targets/aarch64-linux/include/:/usr/local/cuda-10/targets/aarch64-linux/include/
+	export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/cuda-10/targets/aarch64-linux/lib:/usr/local/cuda-10.2/targets/aarch64-linux/lib
+
+	# Source the changes to ~/.bashrc
+	source ~/.bashrc
+
+	# Compilation de pycuda
+	wget https://files.pythonhosted.org/packages/5a/56/4682a5118a234d15aa1c8768a528aac4858c7b04d2674e18d586d3dfda04/pycuda-2021.1.tar.gz
+	tar xfz pycuda-2021.1.tar.gz
+	cd pycuda-2021.1
+	python3 configure.py --cuda-root=/usr/local/cuda
+	sudo make install
+
+	# Test de PyCUDA
+	sudo pip3 install -U pytest
+	python3 -m pip show pytest
+	python3 -m pytest
+
+Installation de modules supplémentaires:
+========================================
+	sudo apt install python3-smbus
+	sudo apt-get install -y libwayland-egl1 gstreamer1.0-plugins-bad libgstreamer-plugins-bad1.0-0 gstreamer1.0-plugins-good python3-gst-1.0
+	sudo -H pip3 install pyzmq
+
+Configuration du Jetson: Désactive le lancement du GUI
+========================
+	sudo systemctl set-default multi-user
+	sudo systemctl disable nvzramconfig.service
+	sudo nvpmodel -m 0
+
+Installation de tf2onnx:
+========================
+	sudo apt install protobuf-compiler
+	sudo -H pip3 install onnx==1.11.0
+	sudo -H pip3 install tf2onnx==1.10.0
+
+
+Compilation de protobuf:
+========================
+	cd /home/$USER
+	wget --no-check-certificate --content-disposition https://raw.githubusercontent.com/AlexandreBourrieau/JetsonNano/main/install_protobuf.sh
+	sudo chmod +x install_protobuf.sh
+	sudo ./install_protobuf.sh
+
+Installation de imageAug:
+=========================
+sudo pip3 install imgaug
+
+Modification de la configuration du service jupyter:
+=================================================== 
+sudo nano /etc/systemd/system/jupyter.service
+=>Ajouter : Environment="LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1" à la fin de la section [Service]
+sudo chown -R jetson:jetson ~/.local/share/
+sudo chown -R jetson:jetson .jupyter/jupyter_server_config.json
+sudo chown -R jetson:jetson /usr/local/share/jupyter/lab/settings/
+sudo systemctl daemon-reload
+sudo systemctl restart jupyter.service
